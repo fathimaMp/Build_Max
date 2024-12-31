@@ -1,0 +1,37 @@
+{% extends 'worker/worker_nav.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block content %}
+<table class="table">
+    <tr>
+
+        <th>First_Name</th>
+        <th>Last_Name</th>
+        <th>Email</th>
+        <th>Phone_No</th>
+        <th>work</th>
+        <th>address</th>
+        <th>Profile_pic</th>
+        <th colspan="2">Status</th>
+    </tr>
+    {% for i in page_obj %}
+    <tr>
+
+        <th>{{i.UserId.First_Name}}</th>
+        <th>{{i.UserId.Last_Name}}</th>
+        <th>{{i.UserId.Email}}</th>
+        <th>{{i.UserId.Phone_No}}</th>
+        <th>{{i.workId}}</th>
+        <th>{{i.UserId.address}}</th>
+        <th><img src="{{i.UserId.Profile_pic.url}}" alt="" width="50px" height="50px"></th>
+        <th><a class="btn btn-success" href="{% url 'approve_user_req' workerId i.ReqId %}">Approve </a></th>
+        <th><a class="btn btn-danger" href="{% url 'reject_user_req' workerId i.ReqId %}">Reject </a></th>
+    </tr>
+    {% endfor %}
+</table>
+{% include 'pagination.html' %}
+{% endblock content %}
+

@@ -1,0 +1,52 @@
+{% extends 'user/user_nav.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% load static %}
+<head>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+{% block content %}
+<section class="main">
+        <center>
+    <div class="col-xs-12"  style="padding:10px;">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div class="alert alert-warning" role="alert" style="width:50%;">
+                <li style="list-style-type: none;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    </center>
+
+
+
+    <div class="main-div">
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-4">
+                    {% for i in page_obj %}
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="store-item position-relative text-center">
+                            <p>{{i.Caption}}</p>
+                            <img alt=""   src="{{i.Image.url}}" width="250px" height="250px">
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+
+{% endblock content %}

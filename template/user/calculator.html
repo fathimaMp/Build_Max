@@ -1,0 +1,144 @@
+{% extends 'user/user_nav.html' %}
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% load static %}
+
+{% block content %}
+<section class="main" style="height:auto;">
+    <div class="main-div">
+        <form style="width:800px;">
+            {% csrf_token %}
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Buildup Area</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="area" type="text" value="">
+                </div>
+                <div class="col-md-4">
+                    <span>Sqf</span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Cement</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="cement" readonly type="text" value="">
+                </div>
+                <div class="col-md-4">
+                    <span>Bags</span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Sand</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="sand" readonly type="text" value="">
+                </div>
+                <div class="col-md-4">
+                    <span>Ton</span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Aggregate</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="aggregate" readonly type="text" value="">
+                </div>
+                <div class="col-md-4">
+                    <span>Ton</span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+
+                <label class="form-label col-md-2">Steel</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="steel" readonly type="text" value="">
+                </div>
+                <div class="col-md-4">
+                    <span>kg</span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Paint</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="paint" readonly type="text" value="">
+                </div>
+                <div class="col-md-4">
+                    <span>lt</span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Bricks</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="bricks" readonly type="text" value="">
+                </div>
+                <div class="col-md-4">
+                    <span>Pcs</span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Flooring</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="flooring" readonly type="text" value="">
+                </div>
+                <div class="col-md-4">
+                    <span>Sqft</span>
+                </div>
+            </div>
+
+            <br>
+            <br>
+        </form>
+
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get references to input fields
+            const areaInput = document.getElementById("area");
+            const cementInput = document.getElementById("cement");
+            const sandInput = document.getElementById("sand");
+            const aggregateInput = document.getElementById("aggregate");
+            const steelInput = document.getElementById("steel");
+            const paintInput = document.getElementById("paint");
+            const bricksInput = document.getElementById("bricks");
+            const flooringInput = document.getElementById("flooring");
+
+            // Event listener for the area input
+            areaInput.addEventListener("input", function () {
+                // Get the square feet entered by the user
+                const squareFeet = parseFloat(areaInput.value) || 0;
+
+                // Define values per square foot for each material
+                const valuesPerSquareFoot = {
+                    cement: 0.40,
+                    sand: 0.82,
+                    aggregate: 0.61,
+                    steel: 4.00,
+                    paint: 0.18,
+                    bricks: 8,
+                    flooring: 1.30,
+                };
+
+                // Calculate the quantity for each material
+                const cementQuantity = (valuesPerSquareFoot.cement * squareFeet).toFixed(2);
+                const sandQuantity = (valuesPerSquareFoot.sand * squareFeet).toFixed(2);
+                const aggregateQuantity = (valuesPerSquareFoot.aggregate * squareFeet).toFixed(2);
+                const steelQuantity = (valuesPerSquareFoot.steel * squareFeet).toFixed(2);
+                const paintQuantity = (valuesPerSquareFoot.paint * squareFeet).toFixed(2);
+                const bricksQuantity = (valuesPerSquareFoot.bricks * squareFeet).toFixed(2);
+                const flooringQuantity = (valuesPerSquareFoot.flooring * squareFeet).toFixed(2);
+
+                // Update the input fields with the calculated values
+                cementInput.value = cementQuantity;
+                sandInput.value = sandQuantity;
+                aggregateInput.value = aggregateQuantity;
+                steelInput.value = steelQuantity;
+                paintInput.value = paintQuantity;
+                bricksInput.value = bricksQuantity;
+                flooringInput.value = flooringQuantity;
+            });
+        });
+    </script>
+
+</section>
+
+{% endblock content %}

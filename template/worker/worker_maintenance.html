@@ -1,0 +1,63 @@
+{% extends 'worker/worker_nav.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% load static %}
+<head>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+{% block content %}
+<section class="main">
+        <center>
+    <div class="col-xs-12"  style="padding:10px;">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div class="alert alert-warning" role="alert" style="width:50%;">
+                <li style="list-style-type: none;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    </center>
+    <div class="main-div">
+        <div class="reg_form">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form_key %}
+                <!--            {% bootstrap_button button_type="submit" content="OK" %}-->
+                <input class="btn btn-outline-success mx-auto d-grid gap-2 col-6" type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+
+
+    <div class="main-div">
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-4">
+                    {% for i in page_obj %}
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="store-item position-relative text-center">
+                            <img alt="" class="img-fluid" height="500px" src="{{i.worker_maintenance_image.url}}" width="500px">
+                            <div class="p-4">
+                                <a class="btn btn-danger" href="{% url 'delete_maintenance' workerId i.MaintenanceId %}">Delete</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+<center>{% include 'pagination.html' %}</center>
+
+{% endblock content %}

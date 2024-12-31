@@ -1,0 +1,29 @@
+{% extends 'admin/admin_nav.html' %}
+{% load static %}
+{% block content %}
+<table class="table">
+    <tr>
+        <th>register</th>
+        <th>First_Name</th>
+        <th>Last_Name</th>
+        <th>Email</th>
+        <th>Phone_No</th>
+        <th>address</th>
+        <th>Profile_pic</th>
+        <th>Delete</th>
+    </tr>
+    {% for i in page_obj %}
+    <tr>
+        <th>{{i.register}}</th>
+        <th>{{i.First_Name}}</th>
+        <th>{{i.Last_Name}}</th>
+        <th>{{i.Email}}</th>
+        <th>{{i.Phone_No}}</th>
+        <th>{{i.address}}</th>
+        <th><img src="{{i.Profile_pic.url}}" alt="" width="50px" height="50px"></th>
+        <th><a href="{% url 'delete_user' UserId i.UserId %}">Delete </a></th>
+    </tr>
+    {% endfor %}
+</table>
+{% include 'pagination.html' %}
+{% endblock content %}

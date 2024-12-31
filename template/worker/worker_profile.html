@@ -1,0 +1,76 @@
+{% extends 'worker/worker_nav.html' %}
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% load static %}
+
+{% block content %}
+<section class="main" style="height:auto;">
+    <div class="main-div">
+        <form action="" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Worker Id</label>
+                <input class="form-control" disabled type="text" value="{{worker.workerId}}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">First Name</label>
+                <input class="form-control" disabled type="text" value="{{worker.First_Name}}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Last Name</label>
+                <input class="form-control" disabled type="text" value="{{worker.Last_Name}}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input class="form-control" disabled type="text" value="{{worker.Email}}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="exampleFormControlTextarea1">Phone No</label>
+                <textarea class="form-control" disabled id="exampleFormControlTextarea1"
+                          rows="3">{{worker.Phone_No}}</textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input class="form-control" disabled type="passwords" value="{{worker.Password}}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">State</label>
+                <input class="form-control" disabled type="text" value="{{worker.state}}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">District</label>
+                <input class="form-control" disabled type="text" value="{{worker.district}}">
+            </div>
+             <div class="mb-3">
+                <label class="form-label">District</label>
+                <input class="form-control" disabled type="text" value="{{worker.district}}">
+            </div>
+             <div class="mb-3">
+                <label class="form-label">Wage</label>
+                <input class="form-control" disabled type="text" value="{{worker.Wage}}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Id Proof</label>
+                <img class="rounded mx-auto d-block" src="{{worker.Id_Proof.url}}" height="500px" width="500px">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Profile Pic</label>
+                <img class="rounded mx-auto d-block" src="{{worker.Profile_pic.url}}" height="500px" width="500px">
+            </div>
+
+            <div class="mb-3">
+                <a class="btn btn-outline-success mx-auto d-grid gap-2 col-6"
+                   href="{% url 'editworker_profile' workerId %}"> Edit</a>
+            </div>
+            <br>
+            <br>
+        </form>
+
+    </div>
+</section>
+
+{% endblock content %}

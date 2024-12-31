@@ -1,0 +1,12 @@
+.main{
+ height:auto;
+ align-item:center;
+ height:100vh;
+}
+.main-div{
+justify-content:center;
+align-item:center;
+display:flex;
+padding:30px;
+padding-top:80px;
+}

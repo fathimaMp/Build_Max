@@ -1,0 +1,40 @@
+{% extends 'worker/worker_nav.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% load static %}
+<head>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+{% block content %}
+<section class="main">
+
+
+
+
+    <div class="main-div">
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-4">
+                    {% for i in page_obj %}
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="store-item position-relative text-center">
+                            <img alt="" class="img-fluid" height="500px" src="{{i.worker_maintenance_image.url}}" width="500px">
+
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+<center>{% include 'pagination.html' %}</center>
+
+{% endblock content %}

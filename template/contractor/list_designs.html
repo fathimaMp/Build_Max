@@ -1,0 +1,35 @@
+{% extends 'contractor/contractor_nav.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% load static %}
+<head>
+    <link href="{% static 'css/style1.css' %}" rel="stylesheet">
+</head>
+{% block content %}
+<section class="main">
+    <div class="main-div">
+        <table border="1" class="table table-striped">
+            <tr>
+                <th>Designs Id</th>
+                <th>Image</th>
+                <th>Caption</th>
+                <th colspan="2">Operation</th>
+            </tr>
+            {% for i in page_obj %}
+            <tr>
+                <td>{{i.designId}}</td>
+                <td><img src="{{i.Image.url}}" height="100" width="100"></td>
+                <td>{{i.Caption}}</td>
+                <td><a class="btn btn-success" href="{% url 'edit_designs' ContractorId i.designId %}">Edit</a></td>
+                <td><a class="btn btn-danger" href="{% url 'delete_designs' ContractorId i.designId %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+    <center>{% include "pagination.html" %}</center>
+</section>
+{% endblock content %}

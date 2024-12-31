@@ -1,0 +1,36 @@
+{% extends 'main/main_nav.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block content %}
+<section class="main" style="height:auto;background-image:url('{% static 'img/product-bg.jpg' %}'); background-repeat:no-repeat; background-attachment:fixed; background-position:top; background-size:1200px 900px; height:auto;">
+                    <h3 class="m-0 text-primary" align="center"><u><b>CONTRACTOR REGISTRATION</b></u></h3>
+    <center>
+            <div class="col-xs-12" style="padding:10px;">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <div class="alert alert-warning" role="alert" style="width:50%;">
+                        <li style="list-style-type: none;" {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                            {{ message }}
+                        </li>
+                    </div>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </center>
+    <div class="main-div">
+<form action="" method="post" enctype="multipart/form-data" style="color:white;">
+    {% csrf_token %}
+    <div class="form">
+    {% bootstrap_form form %}
+    </div>
+    <input type="submit" value="submit" name="submit" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">
+</form>
+ </div>
+</section>
+</section>
+{% endblock content %}

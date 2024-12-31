@@ -1,0 +1,32 @@
+{% extends 'user/user_nav.html' %}
+{% load static %}
+{% block content %}
+<table class="table">
+    <tr>
+
+        <th>Contractor Name</th>
+        <th>State</th>
+        <th>City</th>
+        <th>District</th>
+        <th>Phone_No</th>
+        <th>Profile_pic</th>
+        <th>Rate</th>
+    </tr>
+    {% for i in page_obj %}
+    <tr>
+
+        <th>{{i.ContractorId.First_Name}}</th>
+        <th>{{i.ContractorId.state}}</th>
+        <th>{{i.ContractorId.city}}</th>
+        <th>{{i.ContractorId.district}}</th>
+        <th>{{i.ContractorId.Phone_No}}</th>
+        <th><img src="{{i.ContractorId.Profile_pic.url}}" alt="" width="50px" height="50px"></th>
+        <th>{{i.Rate}}</th>
+        <td><a class="btn btn-success" href="{% url 'uc_maintenance' UserId i.ReqId  %}">Maintenance Image</a></td>
+
+
+    </tr>
+    {% endfor %}
+</table>
+{% include 'pagination.html' %}
+{% endblock content %}

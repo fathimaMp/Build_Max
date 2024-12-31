@@ -1,0 +1,29 @@
+{% extends 'contractor/contractor_nav.html' %}
+{% load static %}
+{% block content %}
+<table class="table">
+    <tr>
+
+        <th>Owner Name</th>
+        <th>Address</th>
+        <th>Phone_No</th>
+        <th>Profile_pic</th>
+        <th>Rate</th>
+        <th>Maintenance Image</th>
+
+    </tr>
+    {% for i in page_obj %}
+    <tr>
+
+        <th>{{i.UserId.First_Name}}</th>
+        <th>{{i.UserId.address}}</th>
+        <th>{{i.UserId.Phone_No}}</th>
+        <th><img src="{{i.UserId.Profile_pic.url}}" alt="" width="50px" height="50px"></th>
+        <th>{{i.Rate}}</th>
+        <td><a class="btn btn-success" href="{% url 'contractorpreviousmaintenance' ContractorId i.ReqId %}">Previous maintenance</a></td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% include 'pagination.html' %}
+{% endblock content %}

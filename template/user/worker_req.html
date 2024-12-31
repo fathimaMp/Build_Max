@@ -1,0 +1,29 @@
+{% extends 'user/user_nav.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block content %}
+<section class="main"
+         style="height:auto;background-image:url('{% static 'img/u6.jpg' %}'); background-repeat:no-repeat; background-attachment:fixed; background-position:top; background-size:1500px 1200px; height:100vh;">
+    <div class="main-div">
+        <form action="" enctype="multipart/form-data" method="post" style="color:white;width:700px">
+            {% csrf_token %}
+            <div class="form">
+                {% bootstrap_form form %}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Select Worker:</label>
+                <select name="worker" id="worker" class="form-control">
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Wages per day:</label>
+                <input class="form-control" type="text" name="wages" id="wages">
+            </div>
+            <input class="btn btn-primary py-sm-3 px-sm-5 me-3" name="submit" type="submit" value="Submit">
+        </form>
+    </div>
+</section>
+{% endblock content %}

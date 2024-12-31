@@ -1,0 +1,31 @@
+{% extends 'user/user_nav.html' %}
+{% load static %}
+{% block content %}
+<table class="table">
+    <tr>
+        <th>First_Name</th>
+        <th>Phone_No</th>
+        <th>state</th>
+        <th>city</th>
+        <th>district</th>
+        <th>Profile_pic</th>
+        <th>Wage</th>
+        <th>Id_Proof</th>
+        <th>REQUEST</th>
+    </tr>
+    {% for i in page_obj %}
+    <tr>
+        <th>{{i.First_Name}}</th>
+        <th>{{i.Phone_No}}</th>
+        <th>{{i.state}}</th>
+        <th>{{i.city}}</th>
+        <th>{{i.district}}</th>
+        <th><img src="{{i.Profile_pic.url}}" alt="" width="50px" height="50px"></th>
+        <th>{{i.Wage}}</th>
+        <th><img src="{{i.Id_Proof.url}}" alt="" width="50px" height="50px"></th>
+        <th><a class="btn btn-danger" href="{% url 'req_worker' UserId i.workerId WorkId %}">REQUEST </a></th>
+    </tr>
+    {% endfor %}
+</table>
+{% include 'pagination.html' %}
+{% endblock content %}
